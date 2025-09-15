@@ -3,10 +3,9 @@
 1. **Clone Repository**
 
 ```bash
-git clone hhttps://github.com/Alvi19/purchases.git
-cd purchases
+git clone https://github.com/Alvi19/CRUD_API.git
+cd CRUD_API
 composer install
-npm install / yarn install
 cp .env.example .env
 ```
 
@@ -19,6 +18,9 @@ DB_PORT=3306
 DB_DATABASE=nama_database
 DB_USERNAME=username_database
 DB_PASSWORD=password_database
+
+# URL API eksternal untuk pencarian data
+EXTERNAL_API_URL=https://contoh-api-eksternal.com/endpoint
 ```
 
 3. **Instalasi website**
@@ -26,13 +28,26 @@ DB_PASSWORD=password_database
 ```bash
 php artisan key:generate
 php artisan migrate
-php artisan db:seed
-php artisan storage:link
-npm run dev / yarn dev
 ```
 
 4. **Jalankan website**
 
 ```bash
 php artisan serve
+```
+
+5. **Buat Akun Admin via Tinker**
+
+```bash
+php artisan tinker
+>>> use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
+User::create([
+    'name' => 'Admin',
+    'email' => 'admin@example.com',
+    'password' => Hash::make('password'),
+    'role' => 'admin'
+]);
+>>> exit
 ```
